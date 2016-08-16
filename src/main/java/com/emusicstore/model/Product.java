@@ -1,8 +1,12 @@
 package com.emusicstore.model;
 
+import javax.persistence.Entity;
+
 /**
  * Created by 泽宏 on 2016/8/15.
  */
+
+@Entity
 public class Product {
     private String productID;
     private String productName;
