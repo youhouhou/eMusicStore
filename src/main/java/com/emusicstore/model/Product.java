@@ -1,20 +1,31 @@
 package com.emusicstore.model;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 /**
  * Created by 泽宏 on 2016/8/15.
  */
 
 @Entity
+@Table(name = "product")
 public class Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String productID;
+    @Column(name = "name")
     private String productName;
+    @Column(name = "category")
     private String productCategory;
+    @Column(name = "description")
     private String productDescription;
+    @Column(name = "price")
     private double productPrice;
+    @Column(name = "pcondition")
     private String productCondition;
+    @Column(name = "instock")
     private int unitInStock;
+    @Column(name = "manufacturer")
     private String productManufacturer;
 
     public String getProductID() {

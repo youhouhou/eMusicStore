@@ -27,7 +27,7 @@
                    <p><strong>Manufacturer</strong> : ${product.productManufacturer}</p>
                    <p><strong>Category</strong> : ${product.productCategory}</p>
                    <p><strong>Condition</strong> : ${product.productCondition}</p>
-                   <h4>${product.productPrice} USD</h4>
+                   <h4>${product.productPrice}</h4>
                </div>
            </div>
        </div>
