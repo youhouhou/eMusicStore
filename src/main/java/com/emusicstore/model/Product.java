@@ -1,5 +1,7 @@
 package com.emusicstore.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
 
 /**
@@ -27,6 +29,9 @@ public class Product {
     private int unitInStock;
     @Column(name = "manufacturer")
     private String productManufacturer;
+
+    @Transient  //won't persist this data into database
+    private MultipartFile productImage;
 
     public String getProductID() {
         return productID;
@@ -90,5 +95,13 @@ public class Product {
 
     public void setProductManufacturer(String productManufacturer) {
         this.productManufacturer = productManufacturer;
+    }
+
+    public MultipartFile getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(MultipartFile productImage) {
+        this.productImage = productImage;
     }
 }

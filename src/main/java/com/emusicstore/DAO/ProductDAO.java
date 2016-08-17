@@ -17,5 +17,7 @@ public interface ProductDAO {
 
     void deleteProduct(String id);
 
+    public void editProduct(Product product);
+
 
 }
