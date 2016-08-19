@@ -15,6 +15,6 @@
     </bean>
     
 
-    <mvc:resources mapping="/resources/**" location="/resources/"></mvc:resources>
+    <mvc:resources mapping="/resources/**/*" location="/resources/"></mvc:resources>
     <tx:annotation-driven></tx:annotation-driven>
 </beans>

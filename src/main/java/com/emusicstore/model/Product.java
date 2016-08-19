@@ -17,24 +17,16 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String productID;
-    @Column(name = "name")
     @NotEmpty(message = "The product name must not be null")
     private String productName;
-    @Column(name = "category")
     private String productCategory;
-    @Column(name = "description")
     private String productDescription;
-    @Column(name = "price")
     @Min(value = 0,message = "The product price must not less than 0")
     private double productPrice;
-    @Column(name = "pcondition")
     private String productCondition;
-    @Column(name = "instock")
     @Min(value = 0,message = "The product unit must not less than 0")
     private int unitInStock;
-    @Column(name = "manufacturer")
     private String productManufacturer;
-
     @Transient  //won't persist this data into database
     private MultipartFile productImage;
 
