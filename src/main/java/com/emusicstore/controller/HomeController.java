@@ -30,8 +30,6 @@ import java.util.List;
 @Controller
 public class HomeController {
 
-    private Path path;
-
     @Autowired
     private ProductDAO productDAO;
 
@@ -55,95 +53,7 @@ public class HomeController {
         return "viewProduct";
     }
 
-    @RequestMapping("/admin")
-    public String adminPage(){
-        return "admin";
-    }
 
-    @RequestMapping("/admin/productInventory")
-    public String productInventory(Model model){
-        List<Product> products = productDAO.getAllProduct();
-        model.addAttribute("products",products);
-        return "productInventory";
-    }
-
-    @RequestMapping("/admin/productInventory/addProduct")
-    public String addProduct(Model model){
-        Product product = new Product();
-        product.setProductCategory("instrument");
-        product.setProductCondition("new");
-
-        model.addAttribute("product",product);
-
-        return "addProduct";
-    }
-
-    @RequestMapping(value = "/admin/productInventory/addProduct",method = RequestMethod.POST)
-    public String addProductPost(@Valid @ModelAttribute("product") Product product, BindingResult results,
-                                 HttpServletRequest request){
-        if(results.hasErrors()){
-            return "addProduct";
-        }
-        productDAO.addProduct(product);
-        MultipartFile productImage = product.getProductImage();
-        String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-        path = Paths.get(rootDirectory+"\\resources\\images\\"+product.getProductID()+".png");
-
-        if(productImage!=null && !productImage.isEmpty()){
-            try{
-                productImage.transferTo(new File(path.toString()));
-            }catch (Exception e){
-                e.printStackTrace();
-                throw new RuntimeException("Product image saving failed",e);
-            }
-        }
-
-        return "redirect:/admin/productInventory";
-    }
-
-    @RequestMapping("/admin/productInventory/deleteProduct/{id}")
-    public String deleteProduct(@PathVariable String id,HttpServletRequest request){
-        String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-        path = Paths.get(rootDirectory+"\\resources\\images\\"+id+".png");
-        if(Files.exists(path)){
-            try{
-                Files.delete(path);
-            }catch (IOException e){
-                e.printStackTrace();
-            }
-        }
-        productDAO.deleteProduct(id);
-        return "redirect:/admin/productInventory";
-    }
-
-    @RequestMapping("/admin/productInventory/editProduct/{id}")
-    public String editProduct(@PathVariable("id") String id, Model model){
-        Product product = productDAO.getProductByID(id);
-
-        model.addAttribute(product);
-        return "editProduct";
-    }
-
-    @RequestMapping(value = "/admin/productInventory/editProduct",method = RequestMethod.POST)
-    public String editProductPost(@Valid @ModelAttribute("product") Product product, BindingResult results,
-                                  HttpServletRequest request){
-        if(results.hasErrors()){
-            return "editProduct";
-        }
-        MultipartFile productImage = product.getProductImage();
-        String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-        path = Paths.get(rootDirectory+"\\resources\\images\\"+product.getProductID()+".png");
-
-        if(productImage != null && !productImage.isEmpty()){
-            try{
-                productImage.transferTo(new File(path.toString()));
-            }catch(Exception e){
-                throw new RuntimeException("Product image saving failed", e);
-            }
-        }
-        productDAO.editProduct(product);
-        return "redirect:/admin/productInventory";
-    }
 
 
 }

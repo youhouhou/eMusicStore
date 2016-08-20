@@ -65,6 +65,9 @@
 
         <input type="submit" value="Submit" class="btn btn-default">
         <a href="<c:url value="/admin/productInventory"/> " class="btn btn-default">Cancel</a>
+
+        <input type="hidden"  name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
         </form:form>
 
         <%@include file="/WEB-INF/views/templete/footer.jsp"%>
