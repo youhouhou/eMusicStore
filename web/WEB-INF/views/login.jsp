@@ -5,10 +5,11 @@
 <div class="container-wrapper">
     <div class="login-container">
         <div id="login-box">
-            <h2>Login with Username and Password</h2>
+            <h2>Welcom Back! Please Login~</h2>
 
-            <c:if test="${not empty msg}">
-                <div class="msg">${msg}</div>
+            <c:if test="${not empty logout}">
+                <div class="logout" style="color: #309dff;">${logout}</div>
+                <br>
             </c:if>
 
             <c:url value=" ${request.contextPath}/j_spring_security_check" var="loginUrl" />
@@ -16,6 +17,7 @@
             <form name="loginForm" action="${loginUrl}"  method="post">
                 <c:if test="${not empty error}">
                     <div class="error" style="color: #ff0000;">${error}</div>
+                    <br>
                 </c:if>
                 <div class="form-group">
                     <label for="username">User: </label>

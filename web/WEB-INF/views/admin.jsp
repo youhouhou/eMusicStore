@@ -16,6 +16,12 @@
             <p class="lead">This is the administrator page </p>
         </div>
 
+        <c:if test="${pageContext.request.userPrincipal.name != null}">
+            <h3>Welcome: ${pageContext.request.userPrincipal.name} | <a href="<spring:url
+            value="/logout"/> ">Logout</a>
+                </h3>
+        </c:if>
+
         <h3>
             <a href="<c:url value="/admin/productInventory"/> ">Product Inventory</a>
         </h3>
