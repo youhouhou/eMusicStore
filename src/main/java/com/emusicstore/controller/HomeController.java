@@ -18,9 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 /**
@@ -40,7 +37,13 @@ public class HomeController {
     }
 
     @RequestMapping("/productList")
-    public String getProducts(Model model){
+    public String getProductsSession(HttpServletRequest request){
+        return "redirect:/productList/"+request.getSession(true).getId();
+    }
+
+    @RequestMapping("/productList/{cartID}")
+    public String getProducts(@PathVariable(value = "cartID") String cartID, Model model){
+        model.addAttribute("cartID",cartID);
         List<Product> products = productDAO.getAllProduct();
         model.addAttribute("products",products);
         return "productList";

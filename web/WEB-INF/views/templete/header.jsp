@@ -12,6 +12,8 @@
 
     <title>Music Store</title>
 
+    <!-- Angular JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="<c:url value="/resources/css/bootstrap.min.css"/>"rel="stylesheet">
     <!-- Carousel CSS-->
