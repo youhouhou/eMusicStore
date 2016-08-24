@@ -14,28 +14,27 @@ function CartCtrl($http) {
         $http.get('/rest/cart/' + vm.cartId).success(function (data) {
             vm.cart = data;
         });
-    }
+    };
 
     vm.clearCart = function () {
         $http.delete('/rest/cart/' + vm.cartId).success(function() {
             vm.refreshCart(vm.cartId);
         });
-    }
+    };
 
     vm.initCartId = function (cartId) {
         vm.cartId = cartId;
         vm.refreshCart(cartId);
-    }
+    };
 
     vm.addToCart = function (productId) {
         $http.put('/rest/cart/add/' + productId).success(function (data) {
             alert("Product successfully added to the cart!");
         });
-    }
+    };
 
     vm.removeFromCart = function (productId) {
         $http.put('/rest/cart/remove/' + productId).success(function (data) {
-            vm.refreshCart($http.get('/e-MusicStore/rest/cart/cartId'));
             alert("Product successfully removed to the cart!");
         });
     }
