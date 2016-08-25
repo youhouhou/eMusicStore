@@ -24,9 +24,6 @@ public class CustomerOrder implements Serializable {
     @JoinColumn(name = "customerID")
     private Customer customer;
 
-    @OneToOne
-    @JoinColumn(name = "billingAddressID")
-    private BillingAddress billingAddress;
 
     @OneToOne
     @JoinColumn(name = "shippingAddressID")
@@ -54,14 +51,6 @@ public class CustomerOrder implements Serializable {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-
-    public BillingAddress getBillingAddress() {
-        return billingAddress;
-    }
-
-    public void setBillingAddress(BillingAddress billingAddress) {
-        this.billingAddress = billingAddress;
     }
 
     public ShippingAddress getShippingAddress() {

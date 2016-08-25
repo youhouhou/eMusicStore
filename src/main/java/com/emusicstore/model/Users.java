@@ -17,6 +17,7 @@ public class Users {
     private String username;
     private boolean enabled;
     private int customerID;
+    private String password;
 
     public int getUserID() {
         return userID;
@@ -48,5 +49,13 @@ public class Users {
 
     public void setCustomerID(int customerID) {
         this.customerID = customerID;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

@@ -51,6 +51,7 @@
     <security:authentication-manager>
         <security:authentication-provider>
             <security:jdbc-user-service data-source-ref="dataSource"
+
                                         authorities-by-username-query=
                                                 "SELECT username, authority FROM authorities WHERE username = ?"
                                         users-by-username-query="SELECT username,password, enabled FROM users WHERE username = ?"/>

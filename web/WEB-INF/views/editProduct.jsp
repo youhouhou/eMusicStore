@@ -12,7 +12,7 @@
             <p class="lead">Please update product information here:</p>
         </div>
 
-        <form:form action="${pageContext.request.contextPath}/admin/productInventory/editProduct"
+        <form:form action="${pageContext.request.contextPath}/admin/product/editProduct"
                    method="post" commandName="product" enctype="multipart/form-data">
             <!-- assign the id back to product!! since you didn't type the value before -->
             <form:hidden path="productID" value="${product.productID}"></form:hidden>
@@ -20,7 +20,7 @@
 
 
         <div class="form-group">
-            <label for="name">Name</label>&nbsp;&nbsp;<form:errors path="productPrice" cssStyle="color: #b92c28 "></form:errors>
+            <label for="name">Name</label>&nbsp;&nbsp;<form:errors path="productName" cssStyle="color: #b92c28 "></form:errors>
             <form:input path="productName" id="name" class="form-Control" value="${product.productName}"/>
         </div>
 

@@ -46,6 +46,7 @@
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                     <ul class="nav navbar-nav pull-right">
+                        <li><a href="<c:url value="/register"/> ">Register</a> </li>
                         <li><a href="<c:url value="/admin"/> ">Admin</a> </li>
                     </ul>
                 </div>

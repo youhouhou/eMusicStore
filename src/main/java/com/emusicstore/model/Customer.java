@@ -34,9 +34,6 @@ public class Customer implements Serializable {
 
     private boolean enabled;
 
-    @OneToOne
-    @JoinColumn(name = "billingAddressID")
-    private BillingAddress billingAddress;
 
     @OneToOne
     @JoinColumn(name = "shippingAddressID")
@@ -100,14 +97,6 @@ public class Customer implements Serializable {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
-    }
-
-    public BillingAddress getBillingAddress() {
-        return billingAddress;
-    }
-
-    public void setBillingAddress(BillingAddress billingAddress) {
-        this.billingAddress = billingAddress;
     }
 
     public ShippingAddress getShippingAddress() {

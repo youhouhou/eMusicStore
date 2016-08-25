@@ -22,7 +22,7 @@ public class Product implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String productID;
+    private int productID;
     @NotEmpty(message = "The product name must not be null")
     private String productName;
     private String productCategory;
@@ -42,11 +42,11 @@ public class Product implements Serializable {
     @JsonIgnore
     private List<CartItem> cartItemList;
 
-    public String getProductID() {
+    public int getProductID() {
         return productID;
     }
 
-    public void setProductID(String productID) {
+    public void setProductID(int productID) {
         this.productID = productID;
     }
 
