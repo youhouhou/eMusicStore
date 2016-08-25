@@ -7,8 +7,8 @@
         <div id="login-box">
             <h2>Welcom Back! Please Login~</h2>
 
-            <c:if test="${not empty logout}">
-                <div class="logout" style="color: #309dff;">${logout}</div>
+            <c:if test="${not empty msg}">
+                <div class="logout" style="color: #309dff;">${msg}</div>
                 <br>
             </c:if>
 

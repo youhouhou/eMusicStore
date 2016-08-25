@@ -1,14 +1,12 @@
 package com.emusicstore.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
  * Created by 泽宏 on 2016/8/24.
  */
+@Entity
 public class CustomerOrder implements Serializable {
 
 
