@@ -50,7 +50,7 @@
                             <span class="glyphicon glyphicon-shopping-cart"></span>
                             Order Now</a>
 
-                        <a href="<spring:url value="/cart"/>" class="btn btn-default">
+                        <a href="<spring:url value="/customer/cart"/>" class="btn btn-default">
                             <span class="glyphicon glyphicon-hand-right"></span>
                             View Cart</a>
                     </p>

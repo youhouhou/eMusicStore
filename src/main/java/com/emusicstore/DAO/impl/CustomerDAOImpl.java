@@ -43,7 +43,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
         Authorities newAuthority = new Authorities();
         newAuthority.setUsername(customer.getUsername());
-        newAuthority.setAuthority("ROLE_USER");
+        newAuthority.setAuthority("ROLE_ADMIN");
 
         session.saveOrUpdate(newAuthority);
         session.saveOrUpdate(newUser);
@@ -67,5 +67,12 @@ public class CustomerDAOImpl implements CustomerDAO {
         Query query = session.createQuery("from Customer");
         List<Customer> customers = query.list();
         return customers;
+    }
+
+    public Customer getCustomerByUsername(String username){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Customer where username = ?");
+        query.setString(0,username);
+        return (Customer)query.uniqueResult();
     }
 }
