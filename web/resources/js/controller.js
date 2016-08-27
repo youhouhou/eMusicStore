@@ -35,6 +35,7 @@ function CartCtrl($http) {
 
     vm.removeFromCart = function (productId) {
         $http.put('/rest/cart/remove/' + productId).success(function () {
+            vm.refreshCart();
             alert("Product successfully removed to the cart!");
         });
     }

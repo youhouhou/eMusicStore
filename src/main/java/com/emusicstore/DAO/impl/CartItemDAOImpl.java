@@ -45,7 +45,7 @@ public class CartItemDAOImpl implements CartItemDAO{
     public CartItem getCartItemByProductID(int productID) {
         Session session = sessionFactory.getCurrentSession();
 
-        Query query = session.createQuery("from Customer where productID = ?");
+        Query query = session.createQuery("from CartItem where productID = ?");
         query.setInteger(0,productID);
         session.flush();
 

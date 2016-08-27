@@ -71,10 +71,10 @@ public class CartResources {
 
     }
 
-    @RequestMapping(value = "/remove/{productID}",method = RequestMethod.PUT)
+    @RequestMapping(value = "/remove/{productId}",method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void removeItem(@PathVariable int productID){
-        CartItem cartItem = cartItemService.getCartItemByProductID(productID);
+    public void removeItem(@PathVariable(value = "productId") int productId){
+        CartItem cartItem = cartItemService.getCartItemByProductID(productId);
         cartItemService.removeCartItem(cartItem);
     }
 
