@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+    <var name="order" class="com.emusicstore.model.CustomerOrder"/>
+
+    <action-state id="addCartToOrder">
+        <!--return result will be stored in the result attribute-->
+        <evaluate expression="cartDAOImpl.validate(requestParameters.cartID)" result="order.cart"/>
+        <!--transfer to the following page if there is an exception-->
+        <transition to="InvalidCartWarning" on-exception="java.io.IOException"></transition>
+        <!--transfer to this page if there is no exception-->
+        <transition to="collectCustomerInfo"></transition>
+    </action-state>
+
+
+    <view-state id="collectCustomerInfo" view="collectCustomerInfo.jsp" model="order">
+        <!--following are two conditions-->
+        <transition on="customerInfoCollected" to="collectShippingDetail"/>
+    </view-state>
+
+    <view-state id="collectShippingDetail" view="collectShippingDetail.jsp" model="order">
+        <transition on="shippingDetailCollected" to="orderConfirmation"/>
+        <transition on="backToClooectCustomerInfo" to="collectCustomerInfo"/>
+    </view-state>
+
+    <!--view name will be the id name + .jsp by default if there's no view attribute-->
+    <view-state id="orderConfirmation">
+        <transition on="orderConfirmed" to="proceedOrder"/>
+        <transition on="backToCollectShippingDetail" to="collectShippingDetail"/>
+    </view-state>
+    
+    <action-state id="proceedOrder">
+        <evaluate expression="cartItemDAOImpl.removeAllCartItems(order.cart)"/>
+        <transition to="thankCustomer"/>
+    </action-state>
+
+    <view-state id="thankCustomer"  model="order">
+        <transition to="endState"/>
+    </view-state>
+
+    <end-state id="endState"/>
+        
+    <view-state id="InvalidCartWarning">
+        <transition to="endState"/>
+    </view-state>
+    
+    <end-state id="cancelCheckout" view="checkoutCancel.jsp"/>
+
+    <global-transitions>
+        <transition on="cancel" to="cancelCheckout"></transition>
+    </global-transitions>
+
+</flow>

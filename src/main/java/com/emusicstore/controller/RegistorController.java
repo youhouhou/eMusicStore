@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by 泽宏 on 2016/8/25.
@@ -35,6 +36,25 @@ public class RegistorController {
     @RequestMapping(value = "/register",method = RequestMethod.POST)
     public String registerPost(@Valid @ModelAttribute("customer")Customer customer,BindingResult result,
                                Model model){
+
+        if(result.hasErrors()){
+            return "registerCustomer";
+        }
+
+        List<Customer> customerList = customerService.getAllCustomers();
+
+        for(int i=0;  i<customerList.size();i++){
+            if(customer.getCustomerEmail().equals(customerList.get(i).getCustomerEmail())){
+                model.addAttribute("emailMsg", "Email already exists");
+                return "registerCustomer";
+            }
+            if(customer.getUsername().equals(customerList.get(i).getCustomerName())){
+                model.addAttribute("usernameMsg", "Username already exists");
+                return "registerCustomer";
+            }
+        }
+
+
 
         customer.setEnabled(true);
         customerService.addCustomer(customer);

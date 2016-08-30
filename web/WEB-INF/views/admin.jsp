@@ -19,7 +19,7 @@
         <c:if test="${pageContext.request.userPrincipal.name != null}">
             <h3>Welcome: ${pageContext.request.userPrincipal.name} | <a href="<c:url
             value="/logout"/> ">Logout</a>
-                </h3>
+                </h3><br>
         </c:if>
 
         <h3>
@@ -28,6 +28,14 @@
 
         <p>
             Here you can view, check and modify the product inventory
+        </p><br>
+
+        <h3>
+            <a href="<c:url value="/admin/customer"/> ">Customer Management</a>
+        </h3>
+
+        <p>
+            Here you can view the customer information
         </p>
 
 

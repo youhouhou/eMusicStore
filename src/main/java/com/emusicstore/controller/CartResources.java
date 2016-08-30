@@ -51,23 +51,21 @@ public class CartResources {
         Product product = productService.getProductByID(productID);
         List<CartItem> cartItemList = cart.getCartItems();
 
-        boolean test = false;
-
         for(int i=0;i<cartItemList.size();i++){
             if(product.getProductID() == cartItemList.get(i).getProduct().getProductID()){
-                test = true;
                 CartItem cartItem = cartItemList.get(i);
                 cartItem.setQuantity(cartItem.getQuantity()+1);
                 cartItem.setTotalPrice(product.getProductPrice()*cartItem.getQuantity());
                 cartItemService.addCartItem(cartItem);
+                return;
             }
         }
-       if(!test) {
+
             CartItem cartItem = new CartItem(product);
             cartItemList.add(cartItem);
             cartItem.setCart(cart);
             cartItemService.addCartItem(cartItem);
-        }
+
 
     }
 

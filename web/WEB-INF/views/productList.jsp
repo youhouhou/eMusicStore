@@ -3,10 +3,16 @@
 
 <%@include file="/WEB-INF/views/templete/header.jsp"%>
 
+<script>
+    $(document).ready(function(){
+        var searchCondition = '${searchCondition}';
 
-<!-- Marketing messaging and featurettes
-================================================== -->
-<!-- Wrap the rest of the page in another container to center all the content. -->
+        $('.table').DataTable({
+            "lengthMenu": [[1,2,3,5,10,-1], [1,2,3,5,10, "All"]],
+            "oSearch": {"sSearch": searchCondition}
+        });
+    });
+</script>
 
 <div class="container-wrapper">
 

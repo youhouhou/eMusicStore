@@ -18,7 +18,9 @@
             <%--In CartItemController, already attach the "cartId" to the model, and bind the model to the cart.jsp view--%>
             <div ng-controller="cartCtrl as myCtrl" ng-init="myCtrl.initCartId('${cartId}')">
                 <div>
-                    <a class="btn btn-danger pull-left" ng-click="myCtrl.clearCart()"><span class="glyphicon glyphicon-remove"></span>Clear Cart</a>
+                    <a class="btn btn-danger pull-left" ng-click="myCtrl.clearCart()"><span class="glyphicon glyphicon-remove">
+                    </span>Clear Cart</a>
+
                 </div>
 
                 <table class="table table-hover">
@@ -50,6 +52,9 @@
                 </table>
 
                 <a href="<spring:url value="/product/productList"/>" class="btn btn-default">Continue Shopping</a>
+                <a href="<spring:url value="/order/${cartId}"/>" class="btn btn-success pull-right">
+                    <span class="glyphicon glyphicon-shopping-cart "></span> Checkout!
+                </a>
         </section>
     </div>
 </div>
